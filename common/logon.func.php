@@ -30,7 +30,6 @@ function validate ()
             $_SESSION['token'] = $token; 
             $db->query ( "update `users` set `token`='$token' where `id`='$id';" );
         }
-        
         return true;
     }
 	else
@@ -41,7 +40,7 @@ function validate ()
     return false;
 }
 
-function login()
+function loginForm()
 {
 	$out  = '<!DOCTYPE html>';
 	$out .= '<html>';

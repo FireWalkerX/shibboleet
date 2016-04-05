@@ -17,7 +17,7 @@ if ( $db->connect_error )
 }
 
 /* validate login */
-shibboleet\logon\validate() or exit(shibboleet\logon\login()) ;
+shibboleet\logon\validate() or exit(shibboleet\logon\loginForm()) ;
 
 /* Load Required page */
 shibboleet\plugin\load();
