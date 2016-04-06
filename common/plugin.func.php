@@ -1,22 +1,19 @@
 <?PHP
-namespace shibboleet
+namespace shibboleet\plugin;
 
-function load_plugin() { require_once ( plugin_requested () ); }
+function load_plugin() { 
+
+    echo plugin_requested ();
+
+    if(plugin_requested ())
+        if(require_once ( plugin_requested () ))
+           \shibboleet\plugin\sub\__plugin_init ();
+
+}
 
 function plugin_requested() {
-        if ( file_exists ( plugin_requested () ) )
-            return DIR_PLUGINS . get_requested();
+        if ( file_exists ( DIR_PLUGINS . \shibboleet\page\get_requested ( ) ) )
+            return DIR_PLUGINS . \shibboleet\page\get_requested () . '/main.func.php';
+        else
+            return false;
 }
-
-function get_requested()
-{
-        if ( isset ( $_GET['p'] ) ) switch ( $_GET['p'] ) {
-        
-            case "user": return "user/user_index.php"; break;
-            default: return "404";
-        
-        } else
-            return "index";
-}
-
-?>

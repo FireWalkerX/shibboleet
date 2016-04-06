@@ -1,3 +1,1 @@
-<?PHP
-    include('common/settings.php');
-    include('common/sysinit.php');
+<?PHP include('common/sysinit.php') ?>
