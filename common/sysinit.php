@@ -21,5 +21,5 @@ if ( version_compare ( phpversion (), '5.6', '<' ) )
 \shibboleet\logon\validate () or exit ( \shibboleet\logon\loginForm () );
 
 /* Load Required plugin */
-\shibboleet\plugin\load_plugin ();
+\shibboleet\plugin\load_page ();
 ?>

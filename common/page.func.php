@@ -1,25 +1,17 @@
 <?PHP
 namespace shibboleet\page;
 
-function get_requested ()
-{
-    $pages_allowed = array(
-        'user'
-    );
+/* user request -> page exists -> check dependencies -> load dependencies -> load page -> display page */
 
-    if ( isset ( $_GET['p'] ) )
-    {
-        if ( in_array ( $_GET['p'] , $pages_allowed ) )
-        {
-            return $_GET['p'];
-        }
+function load_page() { 
+    if(plugin_requested ())
+        if(require_once ( plugin_requested () ))
+           \shibboleet\plugin\sub\__plugin_init ();
+}
+
+function page_requested() {
+        if ( file_exists ( DIR_PLUGINS . \shibboleet\page\get_requested ( ) ) )
+            return DIR_PLUGINS . \shibboleet\page\get_requested () . '/main.func.php';
         else
-        {
-            return 404;
-        }
-    }
-    else
-    {
-        return "index";
-    }
+            return false;
 }
