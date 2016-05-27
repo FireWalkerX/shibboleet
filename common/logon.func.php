@@ -5,7 +5,7 @@ function validate ()
 {
   global $db;
 
-  /* User statement - used to install db */
+  /* User table - used to install table upon first run */
   $users_table = "CREATE TABLE `users` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `username` varchar(240) NOT NULL,
@@ -30,14 +30,15 @@ function validate ()
     /* No token is set, check if _POST was performed, then try logon */
     if ( isset ( $_POST ) )
     {
-      if ( isset $_POST['username'] ) $db->real_escape_string( $_POST['username'] );
-      if ( isset $_POST['password'] ) $db->real_escape_string( md5 ( $_POST['password'] ) );
+      if ( isset ( $_POST['username'] ) ) $db->real_escape_string( $_POST['username'] );
+      if ( isset ( $_POST['password'] ) ) $db->real_escape_string( md5 ( $_POST['password'] ) );
       $query = "select id from `users` where `username`='$username' and `password`='$password' and `enabled`='1' limit 1;";
       $genToken = true;
     }
     else $query = false;
   }
 
+  // Run query from above, and update token
   if($query != false)
   {
     $result = $db->query ( $query );
