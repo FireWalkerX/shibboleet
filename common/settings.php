@@ -9,6 +9,10 @@ define('DB_NAME','shibboleet');
 /* Template */
 define('TEMPLATE','default');
 
+/* Default Page */
+define('PAGE_DEFAULT','home');
+
 /* Other things here... */
 define('DIR_PLUGINS','common/plugins/');
 define('DIR_TEMPLATES','common/templates/' . TEMPLATE);
+define('DIR_PAGES','common/pages/');

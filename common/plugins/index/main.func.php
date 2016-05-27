@@ -1,7 +1,11 @@
 <?PHP
-namespace shibboleet\plugin\sub;
+namespace shibboleet\plugin\index;
 
 function __plugin_init ()
 {
-    echo "<br />index plugin loaded";
+}
+
+function testing ()
+{
+  return "Hello world!";
 }

@@ -1,15 +1,19 @@
 <?PHP
 namespace shibboleet\plugin;
 
-function load_plugin() { 
-    if(plugin_requested ())
-        if(require_once ( plugin_requested () ))
-           \shibboleet\plugin\sub\__plugin_init ();
+function set_dependencies ( )
+{
+  $dependencies = func_get_args ();
+  foreach ($dependencies as $key => $value) {
+    load_plugin ( $value );
+  }
 }
 
-function plugin_requested() {
-        if ( file_exists ( DIR_PLUGINS . \shibboleet\page\get_requested ( ) ) )
-            return DIR_PLUGINS . \shibboleet\page\get_requested () . '/main.func.php';
-        else
-            return false;
+function load_plugin ( $plugin ) {
+  $file = DIR_PLUGINS . $plugin  . "/main.func.php";
+  if( file_exists ( $file ) )
+  {
+    require_once ( $file );
+    call_user_func( '\shibboleet\plugin\\' . $plugin . '\__plugin_init' );
+  }
 }
