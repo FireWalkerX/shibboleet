@@ -3,9 +3,10 @@ namespace shibboleet\plugin\index;
 
 function __plugin_init ()
 {
+  echo "<p>Hello World!</p>";
 }
 
-function testing ()
+function dice_roll ()
 {
-  return "Hello world!";
+  echo rand(1,6);
 }
