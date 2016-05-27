@@ -30,8 +30,8 @@ function validate ()
     /* No token is set, check if _POST was performed, then try logon */
     if ( isset ( $_POST ) )
     {
-      if ( isset ( $_POST['username'] ) ) $db->real_escape_string( $_POST['username'] );
-      if ( isset ( $_POST['password'] ) ) $db->real_escape_string( md5 ( $_POST['password'] ) );
+      if ( isset ( $_POST['username'] ) ) $username = $db->real_escape_string( $_POST['username'] );
+      if ( isset ( $_POST['password'] ) ) $password = $db->real_escape_string( md5 ( $_POST['password'] ) );
       $query = "select id from `users` where `username`='$username' and `password`='$password' and `enabled`='1' limit 1;";
       $genToken = true;
     }
