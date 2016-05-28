@@ -5,18 +5,15 @@ function validate ()
 {
   global $db;
 
-  /* User table - used to install table upon first run */
-  $users_table = "CREATE TABLE `users` (
+  /* Install table if it dosen't exists. */
+  \shibboleet\db\create_table_if_not_exists('users',"CREATE TABLE `users` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `username` varchar(240) NOT NULL,
     `password` varchar(240) NOT NULL,
     `enabled` int(1) NOT NULL,
     `token` varchar(240) NOT NULL,
     PRIMARY KEY (`id`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;";
-
-  /* Install table if it dosen't exists. */
-  \shibboleet\db\create_table_if_not_exists('users',$users_table) or die("Couldn't create table 'users'.");
+  ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;") or die("Couldn't create table 'users'.");
 
   /* Check for logout request
   *  Using a post till i figgure out how to omit a stupid "bug" in Safari. */
@@ -31,42 +28,43 @@ function validate ()
   $genToken = false;
   if ( isset ( $_SESSION['token'] ) )
   {
-    $token = $_SESSION['token'];
-    $query = "select token from `users` where `token`='$token' and `enabled`='1' limit 1";
-  }
-  else
-  {
-    /* No token is set, check if _POST was performed, then try logon */
-    if ( isset ( $_POST['username'] ) && isset ( $_POST['password'] ) )
-    {
-      $username = $db->real_escape_string( $_POST['username'] );
-      $password = $db->real_escape_string( md5 ( $_POST['password'] ) );
-      $query = "select id from `users` where `username`='$username' and `password`='$password' and `enabled`='1' limit 1;";
-      $genToken = true;
-    }
-    else $query = false;
-  }
-
-  // Run query from above, and update token
-  if($query != false)
-  {
-    $result = $db->query ( $query );
+    $token = $db->real_escape_string ( $_SESSION['token'] );
+    $result = $db->query ( "select token from `users` where `token`='$token' and `enabled`='1' limit 1" );
     if ( $result->num_rows > 0 )
-    {
-      if ( $genToken == true )
-      {
-        $id = $result->fetch_assoc(); $id = $id['id'];
-        $token = $db->real_escape_string ( base64_encode ( openssl_random_pseudo_bytes ( 30 ) ) );
-        $_SESSION['token'] = $token;
-        $db->query ( "update `users` set `token`='$token' where `id`='$id';" );
-        header( 'Location: /' );
-      }
       return true;
-    }
-    else
+    else destroySession ();
+    unset ( $result );
+  }
+  elseif ( isset ( $_POST['username'] ) && isset ( $_POST['password'] ) )
     {
-      destroySession ();
+      $username = $db->real_escape_string ( $_POST['username'] );
+      $result = $db->query ( "select id,password from `users` where `username`='$username' and `enabled`='1' limit 1;" );
+      if ( $result->num_rows > 0 )
+      {
+        $row = $result->fetch_assoc ();
+        unset ( $result );
+        $id = $row['id'];
+        $hash = $row['password'];
+        unset ( $row );
+        if ( password_verify ( $_POST['password'], $hash ) )
+        {
+          $genToken = true;
+        }
+        else
+        {
+          \shibboleet\debug\log ( "Failed login attempt." );
+          destroySession ();
+        }
+      }
+      else destroySession ();
     }
+
+  if ( $genToken == true )
+  {
+    $token = $db->real_escape_string ( base64_encode ( openssl_random_pseudo_bytes ( 30 ) ) );
+    $_SESSION['token'] = $token;
+    $db->query ( "update `users` set `token`='$token' where `id`='$id';" );
+    header( 'Location: /' );
   }
   return false;
 }

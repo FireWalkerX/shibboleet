@@ -1,1 +1,1 @@
-<?=md5($_GET['md5'])?>
+<?=password_hash( $_GET['md5'], PASSWORD_DEFAULT )?>
