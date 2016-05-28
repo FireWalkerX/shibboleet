@@ -26,7 +26,7 @@ function get_page_file ( )
   return false;
 }
 
-function get_page ()
+function get_page_file ()
 {
-  return get_page_file ();
+  return get_page_path ();
 }
