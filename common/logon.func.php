@@ -6,10 +6,12 @@ function install ()
   /* Install table if it dosen't exists. */
   \shibboleet\db\create_table_if_not_exists('users',"CREATE TABLE `users` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `username` varchar(240) NOT NULL,
-    `password` varchar(240) NOT NULL,
+    `username` varchar(255) NOT NULL,
+    `password` varchar(255) NOT NULL,
     `enabled` int(1) NOT NULL,
-    `token` varchar(240) NOT NULL,
+    `token` varchar(255) NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `email` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;") or die("Couldn't create table 'users'.");
 }
