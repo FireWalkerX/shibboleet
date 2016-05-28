@@ -17,11 +17,17 @@ foreach(array (
 /* Connect to database */
 \shibboleet\db\connect ();
 
+// echo '<pre>';
+// var_dump ( $_GET );
+// var_dump ( $_POST );
+// var_dump ( $_SESSION );
+// echo '</pre>';
+
 /* Validate login */
 \shibboleet\logon\validate () or exit ( \shibboleet\logon\loginForm () );
-
 /* Load Requested Page */
 $page = \shibboleet\page\get_page ();
 if ( $page != false )
   include ( $page );
 ?>
+<?=\shibboleet\logon\logoutButton ()?>

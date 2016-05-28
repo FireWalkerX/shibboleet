@@ -17,6 +17,5 @@ function get_users ()
             foreach($row as $id => $data)
                 $user[$row['id']][$id] = $data;
 
-    if ( count ( $user ) == 1 ) return reset($user);
-    else return $user;
+    return $user;
 }

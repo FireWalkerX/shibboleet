@@ -18,6 +18,15 @@ function validate ()
   /* Install table if it dosen't exists. */
   \shibboleet\db\create_table_if_not_exists('users',$users_table) or die("Couldn't create table 'users'.");
 
+  /* Check for logout request
+  *  Using a post till i figgure out how to omit a stupid "bug" in Safari. */
+  if ( isset ( $_POST['signout'] ) )
+  {
+    destroySession ();
+    header( 'Location: /' );
+    return false;
+  }
+
   /* Check if session token is set */
   $genToken = false;
   if ( isset ( $_SESSION['token'] ) )
@@ -28,10 +37,10 @@ function validate ()
   else
   {
     /* No token is set, check if _POST was performed, then try logon */
-    if ( isset ( $_POST ) )
+    if ( isset ( $_POST['username'] ) && isset ( $_POST['password'] ) )
     {
-      if ( isset ( $_POST['username'] ) ) $username = $db->real_escape_string( $_POST['username'] );
-      if ( isset ( $_POST['password'] ) ) $password = $db->real_escape_string( md5 ( $_POST['password'] ) );
+      $username = $db->real_escape_string( $_POST['username'] );
+      $password = $db->real_escape_string( md5 ( $_POST['password'] ) );
       $query = "select id from `users` where `username`='$username' and `password`='$password' and `enabled`='1' limit 1;";
       $genToken = true;
     }
@@ -50,16 +59,28 @@ function validate ()
         $token = $db->real_escape_string ( base64_encode ( openssl_random_pseudo_bytes ( 30 ) ) );
         $_SESSION['token'] = $token;
         $db->query ( "update `users` set `token`='$token' where `id`='$id';" );
+        header( 'Location: /' );
       }
       return true;
     }
     else
     {
-      unset ( $_SESSION );
-      session_destroy();
+      destroySession ();
     }
   }
   return false;
+}
+
+function destroySession()
+{
+  error_log("Session Destroyed", 0);
+  unset ( $_SESSION );
+  session_destroy ();
+}
+
+function logoutButton ( $text='Signout' )
+{
+  return '<form method="post"><button type="submit" name="signout">' . $text . '</button></form>';
 }
 
 function loginForm()
@@ -68,7 +89,7 @@ function loginForm()
   $out .= '<html>';
   $out .= '<head>';
   $out .= '<meta charset="UTF-8">';
-  $out .= '<title>Title of the document</title>';
+  $out .= '<title>Shibboleet!</title>';
   $out .= '</head>';
   $out .= '<body>';
   $out .= '<p>Authentication required</p>';

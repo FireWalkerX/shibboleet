@@ -11,6 +11,7 @@ define('TEMPLATE','default');
 
 /* Default Page */
 define('PAGE_DEFAULT','home');
+define('PAGE_404','404');
 
 /* Other things here... */
 define('DIR_PLUGINS','common/plugins/');
