@@ -40,6 +40,16 @@ body
 {
   background: #efefef;
 }
+#wrapper #sidebar
+{
+  float: left;
+  width: 20%;
+  margin: 0px 10px 10px 0;
+  padding: 10px;
+  background: #FFF;
+  border: 2px solid #c1c1c1;
+  overflow: auto;
+}
 #wrapper #body
 {
   margin: 10px 0px;
@@ -57,6 +67,29 @@ body
 p, a, td, th, li, pre, blockquote
 {
   font-size: 10pt;
+}
+
+table
+{
+  border-spacing: 0px;
+}
+td
+{
+  padding: 5px;
+}
+tr.header
+{
+  font-weight: bold;
+  padding: 5px;
+}
+tr:nth-child(odd)
+{
+  background: #efefef;
+}
+
+.right
+{
+  text-align: right;
 }
 
 #wrapper #footer p

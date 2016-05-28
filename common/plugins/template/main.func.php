@@ -5,7 +5,7 @@ function __plugin_init ()
 {
 }
 
-function get_header ( $title, $menu=true )
+function get_header ( $title, $menu=true, $sidebar=false )
 {
   $header  = "<!DOCTYPE html>";
   $header .= "<html>";
@@ -26,8 +26,18 @@ function get_header ( $title, $menu=true )
     $header .= get_menu ();
     $header .= '</div>';
   }
-  $header .= '<div id="body">';
+  if ( $sidebar == false )
+    $header .= '<div id="body">';
+  else
+    $header .= '<div id="sidebar">';
   return $header;
+}
+
+function sidebar_to_body ()
+{
+  $sidebar  = '</div>';
+  $sidebar .= '<div id="body">';
+  return $sidebar;
 }
 
 function get_footer ()
