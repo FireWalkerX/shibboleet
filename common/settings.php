@@ -1,5 +1,8 @@
 <?PHP
 
+/* Debug */
+define( 'DEBUG_ENABLED', true );
+
 /* MySQL Database Connection */
 define('DB_USER','root');
 define('DB_PASS','root');

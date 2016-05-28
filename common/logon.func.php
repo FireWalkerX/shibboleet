@@ -73,7 +73,7 @@ function validate ()
 
 function destroySession()
 {
-  var_dump ( \shibboleet\debug\log( "Session Destroyed" ) );
+  \shibboleet\debug\log( "Session Destroyed" );
   unset ( $_SESSION );
   session_destroy ();
 }
