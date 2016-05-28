@@ -2,12 +2,6 @@
 <?=\shibboleet\plugin\template\get_header ( 'Users :: Settings' , true , true )?>
 
 <h2>Users</h2>
-  <ul>
-    <li>List users</li>
-    <li>List users</li>
-    <li>List users</li>
-    <li>List users</li>
-  </ul>
 
 <?=\shibboleet\plugin\template\sidebar_to_body ()?>
 
