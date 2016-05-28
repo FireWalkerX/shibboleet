@@ -4,5 +4,46 @@
   padding: 0;
   font-family: Arial;
   color: #000;
+}
+body
+{
   background: #FFF;
+}
+#wrapper
+{
+  margin: 0 10%;
+}
+#wrapper #header
+{
+  padding: 10px;
+  background: #FFF;
+  border: solid #c1c1c1;
+  border-width: 0px 2px 2px 2px;
+}
+#wrapper #menu
+{
+  margin: 10px 0px;
+  padding: 10px;
+  background: #FFF;
+  border: 2px solid #c1c1c1;
+}
+#wrapper #body
+{
+  margin: 10px 0px;
+  padding: 10px;
+  background: #FFF;
+  border: 2px solid #c1c1c1;
+  overflow: auto;
+}
+
+#wrapper #footer
+{
+  padding: 10px;
+}
+
+
+#wrapper #footer p
+{
+  text-align: right;
+  font-size: 10px;
 }

@@ -116,20 +116,7 @@ function logoutButton ( $text='Signout' )
 
 function loginForm()
 {
-  $out  = '<!DOCTYPE html>';
-  $out .= '<html>';
-  $out .= '<head>';
-  $out .= '<meta charset="UTF-8">';
-  $out .= '<title>Shibboleet!</title>';
-  $out .= '</head>';
-  $out .= '<body>';
-  $out .= '<p>Authentication required</p>';
-  $out .= '<form method="post">';
-  $out .= '<input type="text" name="username" value="jobbe" /><br />';
-  $out .= '<input type="password" name="password" value="hunter2" /><br />';
-  $out .= '<button type="submit">Login</button>';
-  $out .= '</form>';
-  $out .= '</body>';
-  $out .= '</html>';
-  return $out;
+  $page = DIR_PAGES . "login.php";
+  if ( $page != false )
+    include ( $page );
 }

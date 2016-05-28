@@ -31,4 +31,3 @@ $page = \shibboleet\page\get_page ();
 if ( $page != false )
   include ( $page );
 ?>
-<?=\shibboleet\logon\logoutButton ()?>
