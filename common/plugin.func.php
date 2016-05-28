@@ -16,4 +16,6 @@ function load_plugin ( $plugin ) {
     require_once ( $file );
     call_user_func( '\shibboleet\plugin\\' . $plugin . '\__plugin_init' );
   }
+  else
+    \shibboleet\debug\log ( "Illegal plugin ($plugin), not leading." );
 }
