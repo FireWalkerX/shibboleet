@@ -1,5 +1,5 @@
 <?PHP \shibboleet\plugin\set_dependencies( 'template', 'user' ) ?>
-<?=\shibboleet\plugin\template\get_header ( 'Home' )?>
+<?=\shibboleet\plugin\template\get_header ( 'Users :: Settings' )?>
 
 <pre>
 <?php

@@ -22,10 +22,23 @@ body
 }
 #wrapper #menu
 {
+  /*padding: 10px;*/
   margin: 10px 0px;
-  padding: 10px;
   background: #FFF;
   border: 2px solid #c1c1c1;
+  height: 35px;
+}
+#wrapper #menu a
+{
+  padding: 0 10px;
+  display: block;
+  line-height: 35px;
+  float: left;
+  text-decoration: none;
+}
+#wrapper #menu a:hover
+{
+  background: #efefef;
 }
 #wrapper #body
 {
@@ -41,6 +54,10 @@ body
   padding: 10px;
 }
 
+p, a, td, th, li, pre, blockquote
+{
+  font-size: 10pt;
+}
 
 #wrapper #footer p
 {

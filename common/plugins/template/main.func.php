@@ -11,14 +11,14 @@ function get_header ( $title, $menu=true )
   $header .= "<html>";
   $header .= "<head>";
   $header .= '<meta charset="UTF-8">';
-  $header .= "<title>$title :: Shibboleet</title>";
+  $header .= "<title>$title :: " . SL_TITLE . "</title>";
   $header .= '<link href="' . DIR_RESOURCES . 'style.css" rel="stylesheet" type="text/css" />';
   $header .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
   $header .= "</head>";
   $header .= "<body>";
   $header .= '<div id="wrapper">';
   $header .= '<div id="header">';
-  $header .= '<h1>Shibboleet</h1>';
+  $header .= '<h1>' . SL_NAME . '</h1>';
   $header .= '</div>';
   if ( $menu == true )
   {
@@ -44,9 +44,7 @@ function get_footer ()
 
 function get_menu ()
 {
-  $menu  = '<p>';
-  $menu .= '<a href="/">Dashboard</a>';
-  $menu .= ' | <a href="/?p=settings-users">Users</a>';
-  $menu .= '</p>';
+  $menu  = '<a href="/">Dashboard</a>';
+  $menu .= '<a href="/?p=settings-users">Users</a>';
   return $menu;
 }
