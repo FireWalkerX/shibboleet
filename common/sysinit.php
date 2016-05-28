@@ -8,6 +8,7 @@ if ( version_compare ( phpversion (), '5.6', '<' ) )
 /* Files to include before starting system */
 foreach(array (
   'settings',
+  'debug.func',
   'plugin.func',
   'logon.func',
   'database.func',
