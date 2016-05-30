@@ -1,4 +1,4 @@
-<?php // This is a development file - used to manually inserted users into the database ?>
+<?php // This is a development file - delete it in production ?>
 
 <form method="post">
   <input type="password" name="password" />
