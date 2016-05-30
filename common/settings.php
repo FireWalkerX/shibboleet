@@ -23,5 +23,5 @@ define ( 'DIR_PAGES','common/pages/' );
 define ( 'DIR_RESOURCES','/common/resources/' );
 
 /* System Settings */
-define ( 'SL_NAME', 'Service Desk' );
+define ( 'SL_NAME', 'Shibboleet' );
 define ( 'SL_TITLE', 'Shibboleet' );
