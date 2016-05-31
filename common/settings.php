@@ -9,11 +9,7 @@ define ( 'DB_PASS','root' );
 define ( 'DB_HOST','127.0.0.1' );
 define ( 'DB_NAME','shibboleet' );
 
-/* Template */
-define ( 'TEMPLATE','default' );
-
 /* Default Page */
-define ( 'PAGE_DEFAULT','home' );
 define ( 'PAGE_404','404' );
 
 /* Other things here... */
@@ -29,5 +25,5 @@ define ( 'SL_TITLE', 'Shibboleet' );
 global $menu;
 $menu = array(
   'Home' => '/',
-  'Settings' => '/?p=settings&s=settings-users',
+  'Settings' => '/?p=settings',
 );
