@@ -12,11 +12,11 @@ function get_page_request ( $type = 'p' )
 function get_page_file ( $subpage )
 {
   // Define files to check
-  $pages = array (
+  $pages = [
     'requested' => DIR_PAGES . get_page_request () . "/index.php",
     'fallback'  => DIR_PAGES . get_page_request () . ".php",
     '404'       => DIR_PAGES . PAGE_404 . ".php",
-  );
+  ];
 
   if ( $subpage == true )
   {
