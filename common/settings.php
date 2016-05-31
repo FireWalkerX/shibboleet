@@ -14,7 +14,6 @@ define ( 'PAGE_404','404' );
 
 /* Other things here... */
 define ( 'DIR_PLUGINS','common/plugins/' );
-define ( 'DIR_TEMPLATES','common/templates/' . TEMPLATE );
 define ( 'DIR_PAGES','common/pages/' );
 define ( 'DIR_RESOURCES','/common/resources/' );
 
