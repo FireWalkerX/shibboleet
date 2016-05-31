@@ -13,8 +13,7 @@ if (
 );
 ?>
 
-
-<?PHP $user = \shibboleet\plugin\user\get_user ( $_GET['id'] )?>
+<?PHP $user = \shibboleet\plugin\user\get_user ( ['id','username','name','email','enabled','token'], $_GET['id'] )?>
 <form method="post">
 <p>ID: <?=$user['id']?></p>
 <p>Username: <?=$user['username']?></p>
@@ -24,9 +23,3 @@ if (
 <p>Been logged in: <?=( empty ( $user['token'] ) ? "No" : "Yes" )?></p>
 <button type="submit">Update userdata</button>
 </form>
-<br />
-<br />
-<br />
-<br />
-<br />
-<pre><?php print_r ( $user ); ?></pre>
