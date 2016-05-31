@@ -25,3 +25,9 @@ define ( 'DIR_RESOURCES','/common/resources/' );
 /* System Settings */
 define ( 'SL_NAME', 'Shibboleet' );
 define ( 'SL_TITLE', 'Shibboleet' );
+
+global $menu;
+$menu = array(
+  'Home' => '/',
+  'Settings' => '/?p=settings&s=settings-users',
+);

@@ -1,10 +1,4 @@
 <?PHP \shibboleet\plugin\set_dependencies( 'template', 'user' ) ?>
-<?=\shibboleet\plugin\template\get_header ( 'Users :: Settings' , true , true )?>
-
-<h2>Users</h2>
-
-<?=\shibboleet\plugin\template\sidebar_to_body ()?>
-
 <table width="100%">
   <tr class="header">
     <td class='right' width="5%"># id</td>
@@ -26,5 +20,3 @@ foreach ( \shibboleet\plugin\user\get_users () as $id => $data)
 }
 ?>
 </table>
-
-<?=\shibboleet\plugin\template\get_footer ()?>

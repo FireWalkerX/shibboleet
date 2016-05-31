@@ -54,7 +54,12 @@ function get_footer ()
 
 function get_menu ()
 {
-  $menu  = '<a href="/">Dashboard</a>';
-  $menu .= '<a href="/?p=settings">Settings</a>';
-  return $menu;
+  global $menu;
+
+  $out = '';
+  foreach ($menu as $title => $url)
+  {
+    $out .= '<a href="' . $url . '">' . $title . '</a>';
+  }
+  return $out;
 }
