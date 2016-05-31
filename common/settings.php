@@ -22,7 +22,7 @@ define ( 'SL_NAME', 'Shibboleet' );
 define ( 'SL_TITLE', 'Shibboleet' );
 
 global $menu;
-$menu = array(
+$menu = [
   'Home' => '/',
   'Settings' => '/?p=settings',
-);
+];
