@@ -30,3 +30,14 @@ function get_page ()
 {
   return get_page_file ();
 }
+
+function get_subpage ( $page=false )
+{
+  if ( $page == false && isset ( $_GET['s'] ) )
+  {
+    $page = $_GET['s'];
+  }
+
+  
+
+}

@@ -55,6 +55,6 @@ function get_footer ()
 function get_menu ()
 {
   $menu  = '<a href="/">Dashboard</a>';
-  $menu .= '<a href="/?p=settings-users">Users</a>';
+  $menu .= '<a href="/?p=settings">Settings</a>';
   return $menu;
 }
