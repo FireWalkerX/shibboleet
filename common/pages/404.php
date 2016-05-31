@@ -13,9 +13,9 @@
 <div id="err">
 <h1>Error 404 - not found!</h1>
 
-<p>Dang! It seems that we lost'er - this is a sad day.</p>
+<p>Zoink! It seems that we've lost'er - Our apologies.</p>
 
-<p>May we offer you a link to the <a href="/">front page</a> perhaps?</p>
+<p>Perhabs, I could offer you a link to the <a href="/">front page</a>?</p>
 </div>
 </body>
 </html>
