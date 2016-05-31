@@ -32,3 +32,16 @@ function get_user ( $id = false )
     $row = $result->fetch_assoc ();
   return $row;
 }
+
+function update_user ( $id, $data )
+{
+  global $db;
+
+  $id = $db->real_escape_string ( $id );
+  foreach ( $data as $column => $value )
+    $update_string[] = $db->real_escape_string ( $column ) . " = '" . $db->real_escape_string ( $value ) . "'";
+  $update_string = implode ( $update_string, ',' );
+  $query = "update users set $update_string where id = '$id'";
+  $db->query( $query );
+  return true;
+}
