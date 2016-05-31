@@ -7,30 +7,32 @@ function __plugin_init ()
   if ( !\shibboleet\db\table_exists ( 'users' ) ) die ( 0 );
 }
 
-function get_users ()
+function get_user ( $columns = false, $id = false )
 {
   global $db;
+
+  $id = \shibboleet\core\arr_str ( $id, " or id = " );
+  $columns = \shibboleet\core\arr_str ( $columns );
+
+  if ( $id != false )
+  {
+    $id = $db->real_escape_string ( $id );
+    $id = "where id = '$id'";
+  }
   /* Get all tables */
-  $user = false;
-  $result = $db->query( "select * from users;" );
+  $row = false;
+  $result = $db->query( "select $columns from `users` $id;" );
+
   if ( $result->num_rows > 0 )
     while ( $row = $result->fetch_assoc () )
       foreach($row as $id => $data)
         $user[$row['id']][$id] = $data;
-  return $user;
-}
 
-function get_user ( $id = false )
-{
-  if ( $id == false ) return false;
-  global $db;
-  /* Get all tables */
-  $row = false;
-  $id = $db->real_escape_string ( $id );
-  $result = $db->query( "select * from users where ID = '$id';" );
-  if ( $result->num_rows > 0 )
-    $row = $result->fetch_assoc ();
-  return $row;
+
+  if ( count ( $user ) > 1)
+    return $user;
+  else
+    return current ( $user );
 }
 
 function update_user ( $id, $data )
@@ -41,7 +43,7 @@ function update_user ( $id, $data )
   foreach ( $data as $column => $value )
     $update_string[] = $db->real_escape_string ( $column ) . " = '" . $db->real_escape_string ( $value ) . "'";
   $update_string = implode ( $update_string, ',' );
-  $query = "update users set $update_string where id = '$id'";
+  $query = "update `users` set $update_string where id = '$id'";
   $db->query( $query );
   return true;
 }
