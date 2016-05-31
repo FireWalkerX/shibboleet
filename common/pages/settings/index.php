@@ -5,7 +5,7 @@
 
 <div class="sidebarMenu">
 <ul>
-  <li><a href="/?p=settings&s=settings-users">Users</a></li>
+  <li><a href="/?p=settings&s=users">Users</a></li>
 </ul>
 </div>
 
