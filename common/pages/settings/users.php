@@ -6,6 +6,7 @@
     <td>Name</td>
     <td>E-mal</td>
     <td>Active</td>
+    <td></td>
   </tr>
 <?php
 foreach ( \shibboleet\plugin\user\get_users () as $id => $data)
@@ -16,6 +17,7 @@ foreach ( \shibboleet\plugin\user\get_users () as $id => $data)
   echo "<td>" . $data['name'] . "</td>";
   echo "<td>" . $data['email'] . "</td>";
   echo "<td>" . ( $data['enabled'] == 1 ? "yes" : "no" ) . "</td>";
+  echo "<td><a href=\"/?p=settings&s=user-edit&id= " . $data['id'] . "\">Edit</a></td>";
   echo "</tr>";
 }
 ?>
